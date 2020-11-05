@@ -1,0 +1,166 @@
+.TH wxo 1 web-xdg-open
+.SH NAME
+web-xdg-open - open links in the program configured for xdg-open instead of a
+normal browser
+
+.SH SYNOPSIS
+.B web-xdg-open
+.I LINK
+
+.SH DESCRIPTION
+.B web-xdg-open
+tries to open links with the
+.B default filetype
+handler. For
+example images are opened in the default image viewer as configured by
+.B xdg-utils.
+
+.SH CONFIGURATION
+
+You can configure
+.B web-xdg-open
+by overriding it's default behaviour for a file group. This can be done in:
+
+.in 10
+.B $XDG_CONFIG_HOME/wxorc
+
+.in 10
+.B ~/.config/wxorc
+
+.in 7
+The file groups are:
+.in 10
+- image
+.in 10
+- video
+.in 10
+- text
+.in 10
+- git
+.in 10
+- gif
+.in 10
+- pdf
+.in 10
+- clipboard
+
+.in 7
+For example, to open text files in neovim one can define this function in the
+config file:
+
+.in 10
+
+text() {
+    dl "$1" >"$TEMPFILE" && $TERMINAL -e bash -c "nvim '$TEMPFILE'"
+.br
+}
+
+.in 7
+.B IMPORTANT NOTE:
+.br
+For
+.B web-xdg-open
+to work properly it is very important that exit statuses are
+propagated outside these functions. To do this either chain all commands with
+.I &&
+or append
+.I ||return
+to the command.
+
+If you don't do this then the fallback will not be used and
+.B web-xdg-open
+will be very frustrating to use.
+
+.B Example:
+.in 10
+video() {
+    command1 && command2
+.br
+}
+.br
+.I OR
+.br
+video() {
+    command1 || return
+.br
+    command2 || return
+.br
+}
+
+.in 7
+When defining these function there are a few utilities that
+.B web-xdg-open
+defines. You can make use of these when making your config file. You can also
+override them but this is highly discouraged.
+
+.TP
+.B notify()
+A simple wrapper around
+.B notify-send(1)
+that never an error exit status.
+
+.TP
+.B dl()
+Downloads the passed link and outputs it to
+.B stdout
+returning and error exit status if the download fails for any reason and uses
+.B notify()
+to warn about it.
+
+.TP
+.B fallback()
+Is used in case
+.B web-xdg-open
+fails for any reason. By default it opens the link in
+.I $BROWSER
+.br
+Change this variable in the config file (or globally) to set your default web
+browser.
+
+.TP
+.B $TEMPFILE
+A variable that is guaranteed to hold the name of a valid temporary file in the
+format
+.I tmp.XXXXXXXXXX.EXT
+where
+.I XXXXXXXXXX
+are random characters and
+.I EXT
+is the file extension. This file is also guaranteed to be
+.I deleted
+after
+.B web-xdg-open
+exits.
+
+.SH FAQ
+.TP
+.B What is clipboard used for?
+For now only files ending in
+.I *.pub
+are copied to the clipboard, as these are usually public rsa keys.
+
+.TP
+.B How do I set web-xdg-open as my default browser?
+xdg-mime default web-xdg-open.desktop x-scheme-handler/http
+.br
+xdg-mime default web-xdg-open.desktop x-scheme-handler/https
+
+.TP
+.B How can I have a really cool confy config?
+That's easy! Just download
+.I https://github.com/mendess/spell-book/blob/master/runes/wxorc
+😎.
+
+.SH AUTHORS
+Written by Pedro Mendes <pedro.mendes.26@gmail.com> originally in 2020.
+
+.SH LICENSE
+GPLv3
+
+.SH SEE ALSO
+.BR notify-send(1)
+.BR mpv(1)
+.BR xclip(1)
+.BR xdg-open(1)
+.BR xdg-mime(1)
+.BR youtube-dl(1)
