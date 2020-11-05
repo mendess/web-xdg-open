@@ -11,15 +11,16 @@ normal browser
 .B web-xdg-open
 tries to open links with the
 .B default filetype
-handler. For
-example images are opened in the default image viewer as configured by
+handler. For example images are opened in the default image viewer as
+configured by
 .B xdg-utils.
 
 .SH CONFIGURATION
 
 You can configure
 .B web-xdg-open
-by overriding it's default behaviour for a file group. This can be done in:
+by overriding it's default behaviour for a file group. This can be done in one
+of:
 
 .in 10
 .B $XDG_CONFIG_HOME/wxorc
@@ -49,7 +50,6 @@ For example, to open text files in neovim one can define this function in the
 config file:
 
 .in 10
-
 text() {
     dl "$1" >"$TEMPFILE" && $TERMINAL -e bash -c "nvim '$TEMPFILE'"
 .br
@@ -67,7 +67,7 @@ or append
 .I ||return
 to the command.
 
-If you don't do this then the fallback will not be used and
+If you don't do this then the fallback might not be used and
 .B web-xdg-open
 will be very frustrating to use.
 
@@ -88,22 +88,22 @@ video() {
 }
 
 .in 7
-When defining these function there are a few utilities that
+When defining these functions there are a few utilities that
 .B web-xdg-open
-defines. You can make use of these when making your config file. You can also
+defines you can make use of when making your config file. You can also
 override them but this is highly discouraged.
 
 .TP
 .B notify()
 A simple wrapper around
 .B notify-send(1)
-that never an error exit status.
+that never returns an error exit status.
 
 .TP
 .B dl()
-Downloads the passed link and outputs it to
+Downloads the passed link and outputs the downloaded data to
 .B stdout
-returning and error exit status if the download fails for any reason and uses
+returning an error exit status if the download fails for any reason and uses
 .B notify()
 to warn about it.
 
@@ -134,8 +134,9 @@ exits.
 
 .SH FAQ
 .TP
-.B What is clipboard used for?
-For now only files ending in
+.B What is 'clipboard' used for?
+The 'clipboard' function will copy the file's contents to the clipboard.
+Currently only files ending in
 .I *.pub
 are copied to the clipboard, as these are usually public rsa keys.
 
