@@ -19,7 +19,6 @@ depends=(xdg-utils file curl youtube-dl coreutils)
 optdepends=(libnotify mpv xclip)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-install="${pkgname%-git}".install
 source=("git+$url")
 md5sums=('SKIP')
 
@@ -31,3 +30,6 @@ package() {
     cd "${pkgname%-git}" || exit
     make PREFIX=/usr DESTDIR="$pkgdir" install
 }
+
+
+# vim: ts=2 sw=2 et ft=sh:
