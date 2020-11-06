@@ -69,7 +69,7 @@ clipboard() {
 fallback() {
     notify 'Using fallback' -u low
     if [[ "$BROWSER" ]]; then
-        "$BROWSER" "$1"
+        "$BROWSER" "$1" & disown
     else
         notify 'Browser not set' \
             "Please set the \$BROWSER enviroment variable" \
