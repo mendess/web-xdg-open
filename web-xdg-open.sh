@@ -96,6 +96,7 @@ __temp_file() {
     TEMPFILE=$(mktemp) || return 1
     if [[ "$1" ]]; then
         ext="${1##*.}"
+        [[ "$ext" = */* ]] && return 0
         mv "$TEMPFILE" "$TEMPFILE.$ext" || return 1
         TEMPFILE="$TEMPFILE.$ext"
     fi
