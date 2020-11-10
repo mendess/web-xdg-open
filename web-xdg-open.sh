@@ -130,7 +130,7 @@ __try() {
         *.txt | *.sh | *.c | *.cpp | *.h | *.hpp | *.rs | *.spell | *.tool | *.hs | *.conf | *.tex | *.log | *.lhs | *.java | *.py | *.awk | *.pl | *.cs | *.css | *.js | *.scss | *.lua | *.bash | *makefile)
             text "$target"
             ;;
-        *.png | *.jpg | *.jpeg | *.bmp | *.tiff | *.svg | *.ico | *.img)
+        *.png | *.jpg | *.jpeg | *.bmp | *.tiff | *.svg | *.ico | *.img | *.webp)
             image "$target"
             ;;
         *.gif)
