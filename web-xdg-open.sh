@@ -66,10 +66,15 @@ clipboard() {
     fi
 }
 
+archive() {
+    dl "$1" >"$TEMPFILE" && xdg-open "$TEMPFILE"
+}
+
 fallback() {
     notify 'Using fallback' -u low
     if [[ "$BROWSER" ]]; then
-        "$BROWSER" "$1" & disown
+        "$BROWSER" "$1" &
+        disown
     else
         notify 'Browser not set' \
             "Please set the \$BROWSER enviroment variable" \
@@ -95,10 +100,10 @@ dl() {
 __temp_file() {
     TEMPFILE=$(mktemp) || return 1
     if [[ "$1" ]]; then
-        ext="${1##*.}"
-        [[ "$ext" = */* ]] && return 0
-        mv "$TEMPFILE" "$TEMPFILE.$ext" || return 1
-        TEMPFILE="$TEMPFILE.$ext"
+        name="$(basename "$1")"
+        [[ "$name" = */* ]] && return 0
+        mv "$TEMPFILE" "$TEMPFILE-$name" || return 1
+        TEMPFILE="$TEMPFILE-$name"
     fi
 }
 
@@ -133,6 +138,9 @@ __try() {
             ;;
         *.pdf | *.djvu)
             pdf "$target"
+            ;;
+        *.tar | *.bz2 | *.rar | *.Z | *.7z | *.gz | *.xz | *.zip)
+            archive "$target"
             ;;
         *youtube* | *youtu.be* | *clips.twitch.tv* | https://v.redd.it* | https://t.co* | *.avi | *.webm | *.mp4 | *.mp3 | *.wav | *.flac | *.midi | *.dvdrip | *.cam | *.mkv | *.mov | *.mpeg | *.flv | *.mpg | *.mp2 | *.mpv | *.m4p | *.m4v | *.wmv | *.qt | *.swf | *.avchd | *.m4a | *.ogg | *.wma | *.amv | *.mpa | *.ra | *.rax | *.raw | *.smf | *.snd | *.sng | *.swa | *.hma | *.aac | *.ac3 | *.eac3 | *.Vorbis | *.pcm)
             video "$target"
