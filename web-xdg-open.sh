@@ -67,7 +67,8 @@ clipboard() {
 }
 
 archive() {
-    dl "$1" >"$TEMPFILE" && xdg-open "$TEMPFILE"
+    false
+    #dl "$1" >"$TEMPFILE" && xdg-open "$TEMPFILE"
 }
 
 fallback() {
