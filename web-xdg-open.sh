@@ -111,6 +111,7 @@ __temp_file() {
 ## ============== PRIVATE METHODS ================
 
 __cleanup() {
+    sleep 30
     [[ "$TEMPFILE" ]] && rm -f "$TEMPFILE"
     :
 }
