@@ -5,7 +5,7 @@ set -o pipefail
     echo "Usage: $0 link" &&
     exit 1
 
-readonly CONFIG="${XDG_CONFIG_HOME:-~/.config}/wxorc"
+readonly CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/wxorc"
 readonly APP_NAME="$(basename "$0")"
 
 ## ============== PUBLIC OVERRIDABLE METHODS ================
