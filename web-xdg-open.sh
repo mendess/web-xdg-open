@@ -129,7 +129,7 @@ __try() {
             raw_link="${raw_link//blob\//}"
             git "$raw_link"
             ;;
-        *.txt | *.sh | *.c | *.cpp | *.h | *.hpp | *.rs | *.spell | *.tool | *.hs | *.conf | *.tex | *.log | *.lhs | *.java | *.py | *.awk | *.pl | *.cs | *.css | *.js | *.scss | *.lua | *.bash | *makefile | *.md | *.nb)
+        *.txt | *.sh | *.c | *.cpp | *.h | *.hpp | *.rs | *.spell | *.tool | *.hs | *.conf | *.tex | *.log | *.lhs | *.java | *.py | *.awk | *.pl | *.cs | *.css | *.js | *.scss | *.lua | *.bash | *makefile | *.md | *.nb | *.yml | *.yaml)
             text "$target"
             ;;
         *.png | *.jpg | *.jpeg | *.bmp | *.tiff | *.svg | *.ico | *.img | *.webp)
