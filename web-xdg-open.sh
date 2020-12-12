@@ -40,6 +40,10 @@ text() {
     dl "$1" >"$TEMPFILE" && xdg-open "$TEMPFILE"
 }
 
+matematica() {
+    text "$@"
+}
+
 git() {
     dl "$1" >"$TEMPFILE" && xdg-open "$TEMPFILE"
 }
@@ -129,8 +133,11 @@ __try() {
             raw_link="${raw_link//blob\//}"
             git "$raw_link"
             ;;
-        *.txt | *.sh | *.c | *.cpp | *.h | *.hpp | *.rs | *.spell | *.tool | *.hs | *.conf | *.tex | *.log | *.lhs | *.java | *.py | *.awk | *.pl | *.cs | *.css | *.js | *.scss | *.lua | *.bash | *makefile | *.md | *.nb | *.yml | *.yaml)
+        *.txt | *.sh | *.c | *.cpp | *.h | *.hpp | *.rs | *.spell | *.tool | *.hs | *.conf | *.tex | *.log | *.lhs | *.java | *.py | *.awk | *.pl | *.cs | *.css | *.js | *.scss | *.lua | *.bash | *makefile | *.md | *.yml | *.yaml)
             text "$target"
+            ;;
+        *.nb)
+            matematica "$target"
             ;;
         *.png | *.jpg | *.jpeg | *.bmp | *.tiff | *.svg | *.ico | *.img | *.webp)
             image "$target"
