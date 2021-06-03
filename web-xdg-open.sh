@@ -6,8 +6,8 @@ set -o pipefail
     exit 1
 
 readonly CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/wxorc"
-readonly APP_NAME
-APP_NAME="$(basename "$0")"
+#shellcheck disable=2155
+readonly APP_NAME="$(basename "$0")"
 
 ## ============== PUBLIC OVERRIDABLE METHODS ================
 notify() {
