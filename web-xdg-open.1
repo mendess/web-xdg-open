@@ -44,6 +44,13 @@ The file groups are:
 - pdf
 .in 10
 - clipboard
+.in 7
+Additionally you can also override a
+.I other
+function to provide handling of other patterns that
+.B web-xdg-open
+does not already recognise. This function receives a second parameter containing the same link
+stripped of the any query string it might have.
 
 .in 7
 For example, to open text files in neovim one can define this function in the

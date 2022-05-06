@@ -103,6 +103,10 @@ dl() {
     __bash_not_smart_enough "$@" 2>&1
 }
 
+other() {
+    false
+}
+
 __temp_file() {
     TEMPFILE=$(mktemp) || return 1
     if [[ "$1" ]]; then
@@ -158,7 +162,7 @@ __try() {
         *.pub)
             clipboard "$target"
             ;;
-        *) false ;;
+        *) other "$target" "$clean_link" ;;
     esac
 }
 
