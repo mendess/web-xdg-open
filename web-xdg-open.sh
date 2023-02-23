@@ -28,7 +28,7 @@ video() {
         }
     else
         notify 'Downloading' "$1"
-        if ! error=$(youtube-dl --no-color "$1" --output "$TEMPFILE"); then
+        if ! error=$(youtube-dl --no-color "$1" --output "$TEMPFILE" 2>&1); then
             notify 'Download failed' "$error" -u critical
             return 1
         else
