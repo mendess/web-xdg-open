@@ -156,7 +156,7 @@ __try() {
         *.tar | *.bz2 | *.rar | *.Z | *.7z | *.gz | *.xz | *.zip)
             archive "$target"
             ;;
-        *vm.tiktok.com* | *youtube.com* | *youtu.be* | *vimeo* | *clips.twitch.tv* | *soundcloud.com* | https://v.redd.it* | https://t.co* | *medal.tv* | *streamable.com* | *.avi | *.webm | *.mp4 | *.mp3 | *.wav | *.flac | *.midi | *.dvdrip | *.cam | *.mkv | *.mov | *.mpeg | *.flv | *.mpg | *.mp2 | *.mpv | *.m4p | *.m4v | *.wmv | *.qt | *.swf | *.avchd | *.m4a | *.ogg | *.wma | *.amv | *.mpa | *.ra | *.rax | *.raw | *.smf | *.snd | *.sng | *.swa | *.hma | *.aac | *.ac3 | *.eac3 | *.Vorbis | *.pcm)
+        *bilibili.com* | *vm.tiktok.com* | *youtube.com* | *youtu.be* | *vimeo* | *clips.twitch.tv* | *soundcloud.com* | https://v.redd.it* | https://t.co* | *medal.tv* | *streamable.com* | *.avi | *.webm | *.mp4 | *.mp3 | *.wav | *.flac | *.midi | *.dvdrip | *.cam | *.mkv | *.mov | *.mpeg | *.flv | *.mpg | *.mp2 | *.mpv | *.m4p | *.m4v | *.wmv | *.qt | *.swf | *.avchd | *.m4a | *.ogg | *.wma | *.amv | *.mpa | *.ra | *.rax | *.raw | *.smf | *.snd | *.sng | *.swa | *.hma | *.aac | *.ac3 | *.eac3 | *.Vorbis | *.pcm)
             video "$target"
             ;;
         *.pub)
